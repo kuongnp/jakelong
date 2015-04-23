@@ -9,12 +9,12 @@ server.views({
 	engines: {
 		html: require('handlebars')
 	},
-	relativeTo: __dirname+'/views/themes/backend',
-	path: './',
-	layoutPath: './layout',
+	//relativeTo: __dirname+'/views/themes/backend',
+	path: 'views/themes/agency',
+	layoutPath: 'views/themes/agency/layout',
 	layout: 'default',
-	partialsPath: './partials',
-	helpersPath: './helpers',
+	partialsPath: 'views/themes/agency/partials',
+	helpersPath: 'views/themes/agency/helpers',
 });
 
 //create routes
