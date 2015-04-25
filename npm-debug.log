@@ -1,63 +1,28 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'c:\\Program Files\\nodejs\\node.exe',
 1 verbose cli   'c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'install',
-1 verbose cli   'jitsu',
-1 verbose cli   '-g' ]
+1 verbose cli   'start' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.36
-4 verbose cache add [ 'jitsu', null ]
-5 verbose cache add name=undefined spec="jitsu" args=["jitsu",null]
-6 verbose parsed url { protocol: null,
-6 verbose parsed url   slashes: null,
-6 verbose parsed url   auth: null,
-6 verbose parsed url   host: null,
-6 verbose parsed url   port: null,
-6 verbose parsed url   hostname: null,
-6 verbose parsed url   hash: null,
-6 verbose parsed url   search: null,
-6 verbose parsed url   query: null,
-6 verbose parsed url   pathname: 'jitsu',
-6 verbose parsed url   path: 'jitsu',
-6 verbose parsed url   href: 'jitsu' }
-7 silly lockFile 9d81e68b-jitsu jitsu
-8 verbose lock jitsu C:\Users\cuongnp1\AppData\Roaming\npm-cache\9d81e68b-jitsu.lock
-9 silly lockFile 9d81e68b-jitsu jitsu
-10 silly lockFile 9d81e68b-jitsu jitsu
-11 verbose addNamed [ 'jitsu', '' ]
-12 verbose addNamed [ null, '*' ]
-13 silly lockFile e680b62f-jitsu jitsu@
-14 verbose lock jitsu@ C:\Users\cuongnp1\AppData\Roaming\npm-cache\e680b62f-jitsu.lock
-15 silly addNameRange { name: 'jitsu', range: '*', hasData: false }
-16 verbose request where is /jitsu
-17 verbose request registry https://registry.npmjs.org/
-18 verbose request id 4c3fef84e23e7bb3
-19 verbose url raw /jitsu
-20 verbose url resolving [ 'https://registry.npmjs.org/', './jitsu' ]
-21 verbose url resolved https://registry.npmjs.org/jitsu
-22 verbose request where is https://registry.npmjs.org/jitsu
-23 info trying registry request attempt 1 at 14:16:47
-24 http GET https://registry.npmjs.org/jitsu
-25 info retry will retry, error on last attempt: Error: connect ENETUNREACH
-26 info trying registry request attempt 2 at 14:17:19
-27 http GET https://registry.npmjs.org/jitsu
-28 info retry will retry, error on last attempt: Error: connect ENETUNREACH
-29 info trying registry request attempt 3 at 14:18:40
-30 http GET https://registry.npmjs.org/jitsu
-31 silly lockFile e680b62f-jitsu jitsu@
-32 silly lockFile e680b62f-jitsu jitsu@
-33 error Error: connect ENETUNREACH
-33 error     at errnoException (net.js:905:11)
-33 error     at Object.afterConnect [as oncomplete] (net.js:896:19)
-34 error If you need help, you may report this *entire* log,
-34 error including the npm and node versions, at:
-34 error     <http://github.com/npm/npm/issues>
-35 error System Windows_NT 6.1.7601
-36 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "jitsu" "-g"
-37 error cwd d:\jakelong
-38 error node -v v0.10.36
-39 error npm -v 1.4.28
-40 error syscall connect
-41 error code ENETUNREACH
-42 error errno ENETUNREACH
-43 verbose exit [ 1, true ]
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info prestart jakelong@0.0.0
+6 info start jakelong@0.0.0
+7 verbose unsafe-perm in lifecycle true
+8 info jakelong@0.0.0 Failed to exec start script
+9 error jakelong@0.0.0 start: `node server.js`
+9 error Exit status 8
+10 error Failed at the jakelong@0.0.0 start script.
+10 error This is most likely a problem with the jakelong package,
+10 error not with npm itself.
+10 error Tell the author that this fails on your system:
+10 error     node server.js
+10 error You can get their info via:
+10 error     npm owner ls jakelong
+10 error There is likely additional logging output above.
+11 error System Windows_NT 6.1.7601
+12 error command "c:\\Program Files\\nodejs\\node.exe" "c:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
+13 error cwd d:\jakelong
+14 error node -v v0.10.36
+15 error npm -v 1.4.28
+16 error code ELIFECYCLE
+17 verbose exit [ 1, true ]

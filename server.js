@@ -1,7 +1,9 @@
 var Hapi = require('hapi');
 var Good = require('good');
 var Path = require('path');
+//var Mongoose = require("mongoose");
 var Handlebars = require('handlebars');
+
 var server = new Hapi.Server();
 server.connection({port:3000});
 
@@ -31,23 +33,29 @@ var routes = [
 		handler: function(request, reply) {
 			var data = {
 				title: 'Hello Jakelong',
-				message: 'Hello world, i\'m Jakelong'
+				message: 'Hello world, i\'m Jakelong',
 			};
 			return reply.view('index', data);
 		}
 	},
 	{
 		method: 'GET',
-		path: '/{name}',
-
+		path: '/{slug}',
 		handler: function(request, reply) {
 			var data = {
-				title: 'Hello '+ request.params.name,
-				message: 'Hello world, i\'m '+request.params.name
+				title: 'new page',
+				excerpt: 'excerpt of page',
+				content: 'content of page',
+				status: 1,
+				type: 'page',
+				date: Date.now().toString(),
+				
+				message: 'Hello world, i\'m '+request.params.slug
 			};
 			return reply.view('index', data);
 		}
 	}
+	
 
 ];
 
