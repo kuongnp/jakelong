@@ -1,21 +1,27 @@
 var Hapi = require('hapi');
 var Good = require('good');
 var Path = require('path');
+var Handlebars = require('handlebars');
 var server = new Hapi.Server();
 server.connection({port:3000});
 
 //load dynamic layout for frontend user
+
+
 server.views({
 	engines: {
-		html: require('handlebars')
+		html: Handlebars
 	},
-	//relativeTo: __dirname+'/views/themes/backend',
-	path: 'views/themes/agency',
-	layoutPath: 'views/themes/agency/layout',
+	relativeTo: './views/themes/jakeblog',
+	path: './',
+	layoutPath: './layout',
 	layout: 'default',
-	partialsPath: 'views/themes/agency/partials',
-	helpersPath: 'views/themes/agency/helpers',
+	partialsPath:'./partials',
+	helpersPath: './helpers'
 });
+
+
+
 
 //create routes
 var routes = [
@@ -39,8 +45,7 @@ var routes = [
 				title: 'Hello '+ request.params.name,
 				message: 'Hello world, i\'m '+request.params.name
 			};
-			var pathview = {relativeTo:__dirname+'/views/themes/agency'};
-			return reply.view('index', data,pathview);
+			return reply.view('index', data);
 		}
 	}
 
@@ -48,6 +53,7 @@ var routes = [
 
 //tell server using routes
 server.route(routes);
+
 // Serve static files from `static` dir.
 server.route({
   method: 'GET',
