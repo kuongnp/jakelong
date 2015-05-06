@@ -1,3 +1,19 @@
+var Hapi = require('hapi'),
+	Good = require('good'),
+	Path = require('path'),
+	Routes = require('./routes'),
+	Db = require('./config/db'),
+	Config = require('./config/config');
+
+var app = {};
+app.config = Config;
+
+console.log(app.config);
+
+/*
+
+
+
 var Hapi = require('hapi');
 var Good = require('good');
 var Path = require('path');
@@ -45,11 +61,8 @@ var routes = [
 			var data = {
 				title: 'new page',
 				excerpt: 'excerpt of page',
-				content: 'content of page',
 				status: 1,
 				type: 'page',
-				date: Date.now().toString(),
-				
 				message: 'Hello world, i\'m '+request.params.slug
 			};
 			return reply.view('index', data);
@@ -93,3 +106,25 @@ server.register({
 	})
 });
 
+
+var Hapi = require('hapi'),
+  Routes = require('./routes'),
+  Db = require('./config/db'),
+  Config = require('./config/config');
+
+var app = {};
+app.config = Config;
+
+//For older version of hapi.js
+//var server = Hapi.createServer(app.config.server.host, app.config.server.port, {cors: true});
+
+var server = new Hapi.Server();
+
+server.connection({ port: app.config.server.port });
+
+server.route(Routes.endpoints);
+
+server.start(function () {
+  console.log('Server started ', server.info.uri);
+});
+*/
