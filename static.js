@@ -5,7 +5,8 @@
 exports.get = {
   handler: {
     directory: {
-      path: '../client/src',
+      path: '../view/themes',
+      listing: false,
       index: true
     }
   }

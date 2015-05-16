@@ -1,6 +1,7 @@
 var Hapi = require('hapi'),
 	Good = require('good'),
 	Path = require('path'),
+	Handlebars = require('handlebars'),
 	Routes = require('./routes'),
 	Db = require('./config/db'),
 	Config = require('./config/config');
@@ -8,12 +9,31 @@ var Hapi = require('hapi'),
 var app = {};
 app.config = Config;
 
-console.log(app.config);
+var server = new Hapi.Server();
+
+server.connection({ port: app.config.server.port });
+
+server.views({
+	engines: {
+		html: Handlebars,
+	},
+	relativeTo: './views',
+	path: './templates',
+	layoutPath: './layout',
+	layout: 'default',
+	partialsPath:'./partials',
+	helpersPath: './helpers'
+});
+
+
+server.route(Routes.endpoints);
+
+server.start(function () {
+  console.log('Server started ', server.info.uri);
+});
+
 
 /*
-
-
-
 var Hapi = require('hapi');
 var Good = require('good');
 var Path = require('path');
@@ -37,10 +57,6 @@ server.views({
 	partialsPath:'./partials',
 	helpersPath: './helpers'
 });
-
-
-
-
 //create routes
 var routes = [
 	{
@@ -104,27 +120,5 @@ server.register({
 	server.start(function(){
 		console.log('Server running at:', server.info.uri);
 	})
-});
-
-
-var Hapi = require('hapi'),
-  Routes = require('./routes'),
-  Db = require('./config/db'),
-  Config = require('./config/config');
-
-var app = {};
-app.config = Config;
-
-//For older version of hapi.js
-//var server = Hapi.createServer(app.config.server.host, app.config.server.port, {cors: true});
-
-var server = new Hapi.Server();
-
-server.connection({ port: app.config.server.port });
-
-server.route(Routes.endpoints);
-
-server.start(function () {
-  console.log('Server started ', server.info.uri);
 });
 */

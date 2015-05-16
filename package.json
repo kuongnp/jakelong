@@ -18,7 +18,11 @@
   "homepage": "https://github.com/kuongnp/jakelong",
   "dependencies": {
     "hapi": "^8.4.0",
+    "mongoose": "^4.0.2",
+    "handlebars": "^3.0.1",
     "good": "^5.1.2",
-    "good-console": "^4.1.0"
+    "good-console": "^4.1.0",
+    "joi": "^6.4.1",
+    "boom": "^2.7.1"
   }
 }
