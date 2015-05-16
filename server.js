@@ -2,7 +2,7 @@ var Hapi = require('hapi'),
 	Good = require('good'),
 	Path = require('path'),
 	Handlebars = require('handlebars'),
-	Routes = require('./routes'),
+	Routes = require('./config/routes'),
 	Db = require('./config/db'),
 	Config = require('./config/config');
 
