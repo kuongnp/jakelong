@@ -3,15 +3,16 @@
 
 var Joi = require('joi'),
   Boom = require('boom'),
-  User = require('../model/user').User,
+  Post = require('../model/PostModel').Post,
+  Cate = require('../model/CateModel')
   mongoose = require('mongoose');
 
 
 exports.getAll = {
   handler: function (request, reply) {
-    User.find({}, function (err, user) {
+    Post.find({}, function (err, posts) {
       if (!err) {
-        return reply(user);
+        return reply(posts);
       }
       return reply(Boom.badImplementation(err)); // 500 error
     });
@@ -20,9 +21,9 @@ exports.getAll = {
 
 exports.getOne = {
   handler: function (request, reply) {
-    User.findOne({ 'userId': request.params.userId }, function (err, user) {
+    Post.findOne({ 'slug': request.params.slug }, function (err, post) {
       if (!err) {
-        return reply(user);
+        return reply(post);
       }
       return reply(Boom.badImplementation(err)); // 500 error
     });
@@ -37,13 +38,13 @@ exports.create = {
     }
   },
   handler: function (request, reply) {
-    var user = new User(request.payload);
-    user.save(function (err, user) {
+    var post = new Post(request.payload);
+    post.save(function (err, post) {
       if (!err) {
-        return reply(user).created('/user/' + user._id); // HTTP 201
+        return reply(user).created('/post/' + post._id); // HTTP 201
       }
       if (11000 === err.code || 11001 === err.code) {
-        return reply(Boom.forbidden("please provide another user id, it already exist"));
+        return reply(Boom.forbidden("please provide another post id, it already exist"));
       }
       return reply(Boom.forbidden(err)); // HTTP 403
     });
@@ -57,15 +58,15 @@ exports.update = {
     }
   },
   handler: function (request, reply) {
-    User.findOne({ 'userId': request.params.userId }, function (err, user) {
+    Post.findOne({ 'slug': request.params.slug }, function (err, post) {
       if (!err) {
-        user.username = request.payload.username;
-        user.save(function (err, user) {
+        var post = new Post(request.payload);
+        post.save(function (err, post) {
           if (!err) {
-            return reply(user); // HTTP 201
+            return reply(post); // HTTP 201
           }
           if (11000 === err.code || 11001 === err.code) {
-            return reply(Boom.forbidden("please provide another user id, it already exist"));
+            return reply(Boom.forbidden("please provide another post id, it already exist"));
           }
           return reply(Boom.forbidden(err)); // HTTP 403
         });
@@ -79,26 +80,26 @@ exports.update = {
 
 exports.remove = {
   handler: function (request, reply) {
-    User.findOne({ 'userId': request.params.userId }, function (err, user) {
-      if (!err && user) {
-        user.remove();
-        return reply({ message: "User deleted successfully"});
+    Post.findOne({ 'slug': request.params.slug }, function (err, post) {
+      if (!err && post) {
+        post.remove();
+        return reply({ message: "Post deleted successfully"});
       }
       if (!err) {
         return reply(Boom.notFound());
       }
-      return reply(Boom.badRequest("Could not delete user"));
+      return reply(Boom.badRequest("Could not delete post"));
     });
   }
 };
 
 exports.removeAll = {
   handler: function (request, reply) {
-    mongoose.connection.db.dropCollection('users', function (err, result) {
+    mongoose.connection.db.dropCollection('posts', function (err, result) {
       if (!err) {
-        return reply({ message: "User database successfully deleted"});
+        return reply({ message: "Post database successfully deleted"});
       }
-      return reply(Boom.badRequest("Could not delete user"));
+      return reply(Boom.badRequest("Could not delete post"));
     });
   }
 };

@@ -9,27 +9,22 @@ var mongoose = require('mongoose'),
 */
 
 var PostSchema = new Schema({
-
-  ID : { type: int, unique: true, required: true },
   title: { type: String, required: true},
   excerpt: String,
   content: {type: String, required: true},
-  url: {type: String, required:true},
+  slug: {type: String, required:true},
+  thumbnail: String,
+  categories:{ type:[Schema.Types.ObjectId, ref: 'Cate'], index: true},
+  tags:{type: [Schema.Types.ObjectId, ref: 'Tag'], index: true},
   /**
     status of post can be '1:Published', '2:draft', '0:deleted', etc..
   */
-  status: { type: int, default:2},
+  status: { type: Number, default:2},
   date: { type: Date, default: Date.now},
   /**
     type of post can be 'post', 'page', etc..
   */
   type: { type: String, default: 'post'},
-
-
-  /** 
-    User Name. It can only contain string, is required field.
-  */
-  username : { type: String, required: true },
 
 });
 
