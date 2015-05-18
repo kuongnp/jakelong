@@ -2,7 +2,6 @@
 
 //var User      = require('./controller/usercontroller'),
 var Post      = require('./controller/PostController');
-  //Static    = require('./static');
 
   var static = {
   	handler: {

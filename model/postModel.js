@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
-  * @module  User
+  * @module  Post
   * @description contain the details of Attribute  
 */
 
@@ -25,7 +25,7 @@ var PostSchema = new Schema({
     type of post can be 'post', 'page', etc..
   */
   type: { type: String, default: 'post'},
-
+  page_order: Number
 });
 
 var post = mongoose.model('Post', PostSchema);

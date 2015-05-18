@@ -33,8 +33,8 @@ exports.getOne = {
 exports.create = {
   validate: {
     payload: {
-      userId   : Joi.string().required(),
-      username  : Joi.string().required()
+      title   : Joi.string().required(),
+      slug  : Joi.string().required()
     }
   },
   handler: function (request, reply) {
